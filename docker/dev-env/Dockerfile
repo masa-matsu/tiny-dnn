@@ -1,6 +1,4 @@
-FROM ubuntu:17.04
-
-MAINTAINER Edgar Riba <edgar.riba@gmail.com>
+FROM ubuntu:16.04
 
 # install basic stuff
 

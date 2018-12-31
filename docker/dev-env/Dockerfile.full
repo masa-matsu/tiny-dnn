@@ -1,10 +1,8 @@
-FROM ubuntu:17.04
-
-MAINTAINER Edgar Riba <edgar.riba@gmail.com>
+FROM ubuntu:16.04
 
 # install basic stuff
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update -y && apt-get install -y --no-install-recommends \
     build-essential       \
     cmake                 \
     python-pip            \
@@ -29,7 +27,14 @@ RUN pip install cpplint
 
 # configure and build NNPACK
 
-RUN apt-get install ninja-build
+# Install the latest Ninja.
+# RUN apt-get install ninja-build
+RUN git clone https://github.com/ninja-build/ninja /tmp/ninja \
+ && cd /tmp/ninja \
+ && git checkout v1.8.2 \
+ && ./configure.py --bootstrap \
+ && mv ninja /usr/bin/ninja \
+ && rm -rf /tmp/ninja
 
 RUN pip install --upgrade setuptools && \
     pip install wheel && \
