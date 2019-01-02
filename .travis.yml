@@ -23,8 +23,8 @@ addons:
     - ubuntu-toolchain-r-test
     - llvm-toolchain-precise-3.6
     packages:
-    - gcc-5.4
-    - g++-5.4
+    - gcc-5
+    - g++-5
     - clang-3.6
     - cmake
     - git
@@ -62,8 +62,8 @@ matrix:
 
 before_install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$CXX" == "g++" ]; then
-      export CC="gcc-4.9";
-      export CXX="g++-4.9";
+      export CC="gcc-5";
+      export CXX="g++-5";
     fi
   - gcc --version
   - g++ --version
@@ -74,7 +74,7 @@ install:
   - pip install --user cpplint
 
 before_script:
-  - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$CXX" == "g++-4.9" ]; then
+  - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$CXX" == "g++-5" ]; then
       lcov --directory . --zerocounters;
       cmake -DUSE_TBB=$USE_TBB
             -DUSE_SSE=$USE_SSE
@@ -105,7 +105,7 @@ script:
   - test/tiny_dnn_test
 
 after_success:
-  - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$CXX" == "g++-4.9" ]; then
+  - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$CXX" == "g++-5" ]; then
       lcov --directory . --capture --output-file coverage.info;
       lcov --remove coverage.info 'test/*' 'third_party/*' 'cereal/*' '/usr/*' 'tiny_dnn/io/caffe/caffe.pb.*' --output-file coverage.info;
       lcov --list coverage.info;
