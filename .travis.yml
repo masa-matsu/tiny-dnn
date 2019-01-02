@@ -1,5 +1,5 @@
 sudo: required
-dist: trusty
+dist: xenial
 osx_image: xcode8
 
 language: cpp
@@ -23,8 +23,8 @@ addons:
     - ubuntu-toolchain-r-test
     - llvm-toolchain-precise-3.6
     packages:
-    - gcc-4.9
-    - g++-4.9
+    - gcc-5.4
+    - g++-5.4
     - clang-3.6
     - cmake
     - git
