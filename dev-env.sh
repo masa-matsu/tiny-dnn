@@ -9,3 +9,4 @@ done
 lib_dir="$( cd -P "$( dirname "$script_link" )" && pwd )"
 
 docker run --rm -it -v $lib_dir:/opt/tiny-dnn tinydnn/tinydnn
+
